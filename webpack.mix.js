@@ -1,7 +1,12 @@
 let mix = require('laravel-mix');
 
-mix.js('src/js/app.js', 'www/js')
-    .sass('src/sass/app.scss','www/css')
+mix.disableNotifications()
     .setPublicPath('www')
-    .extract()
     .version();
+
+mix.js('src/js/app.js', 'js')
+    .extract();
+
+mix.sass('src/sass/app.scss', 'css').options({
+    processCssUrls: false
+});
