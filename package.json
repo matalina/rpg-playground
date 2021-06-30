@@ -1,0 +1,31 @@
+{
+  "name": "rpg-playground",
+  "version": "1.0.0",
+  "description": "",
+  "main": "www/index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npx mix",
+    "watch": "npx mix watch --hot",
+    "prod": "npx mix --production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matalina/rpg-playground.git"
+  },
+  "author": "Alicia Wilkerson <alicia@akddev.net>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/matalina/rpg-playground/issues"
+  },
+  "homepage": "https://github.com/matalina/rpg-playground#readme",
+  "dependencies": {
+    "kaboom": "^0.5.1"
+  },
+  "devDependencies": {
+    "laravel-mix": "^6.0.25",
+    "resolve-url-loader": "^4.0.0",
+    "sass": "^1.35.1",
+    "sass-loader": "^12.1.0"
+  }
+}
