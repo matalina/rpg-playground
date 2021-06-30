@@ -24,14 +24,32 @@ export default function Main() {
                 'mountain',
                 k.scale(.25)
             ],
+            'm': [
+                k.sprite('ground', { frame: 1 }),
+                'mountain',
+                'border',
+                k.scale(.25)
+            ],
             'G': [
                 k.sprite('ground', { frame: 5 }),
                 'grasslands',
                 k.scale(.25)
             ],
+            'g': [
+                k.sprite('ground', { frame: 5 }),
+                'grasslands',
+                'border',
+                k.scale(.25)
+            ],
             'H': [
                 k.sprite('ground', { frame: 4 }),
                 'hilltop',
+                k.scale(.25)
+            ],
+            'h': [
+                k.sprite('ground', { frame: 4 }),
+                'hilltop',
+                'border',
                 k.scale(.25)
             ],
             'D': [
@@ -42,6 +60,12 @@ export default function Main() {
             'O': [
                 k.sprite('ground', { frame: 2 }), // oasis
                 'oasis',
+                k.scale(.25)
+            ],
+            'o': [
+                k.sprite('ground', { frame: 2 }), // oasis
+                'oasis',
+                'border',
                 k.scale(.25)
             ],
         
@@ -65,18 +89,40 @@ export default function Main() {
 
     k.keyPress('n', () => {
         loc.move({ x: 0, y: -1 * SPEED });
+    
+        if (loc.pos.y <= 0) {
+            loc.move({ x: 0, y: SPEED });
+            k.camShake(10);
+        };
     })
 
     k.keyPress('s', () => {
         loc.move({ x: 0, y: SPEED });
+
+        if (loc.pos.y >= TILE_SIZE * TILE_COUNT) {
+            loc.move({ x: 0, y: -1 * SPEED });
+            k.camShake(10);
+        };
     })
 
     k.keyPress('w', () => {
         loc.move({ y: 0, x: -1 * SPEED });
+
+        if (loc.pos.x < 0 ) {
+            loc.move({ y: 0, x: SPEED });
+            k.camShake(10);
+        };
+
+        
     })
 
     k.keyPress('e', () => {
         loc.move({ y: 0, x: SPEED });
+
+        if (loc.pos.x >= TILE_SIZE * TILE_COUNT) {
+            loc.move({ y: 0, x: -1 * SPEED });
+            k.camShake(10);
+        };    
     })
 
     k.keyPress('space', () => {

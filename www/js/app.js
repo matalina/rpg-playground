@@ -52,7 +52,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "overview": () => (/* binding */ overview),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-var overview = ['BBMMMMMBB', 'BMMMMMOOB', 'MMMMMDOOO', 'MMMMDDOOO', 'MMMDDDDOG', 'MGDDDGGGG', 'GGGGDGGGG', 'BGGGHGGGB', 'BBGHHHGBB'];
+var overview = ['BBmmmmmBB', 'BMMMMMOOB', 'mMMMMDOOo', 'mMMMDDOOo', 'mMMDDDDOg', 'mGDDDGGGg', 'gGGGDGGGg', 'BGGGHGGGB', 'BBGhhhGBB'];
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (overview);
 
 /***/ }),
@@ -88,19 +88,32 @@ function Main() {
     'M': [_kaboom__WEBPACK_IMPORTED_MODULE_0__.default.sprite('ground', {
       frame: 1
     }), 'mountain', _kaboom__WEBPACK_IMPORTED_MODULE_0__.default.scale(.25)],
+    'm': [_kaboom__WEBPACK_IMPORTED_MODULE_0__.default.sprite('ground', {
+      frame: 1
+    }), 'mountain', 'border', _kaboom__WEBPACK_IMPORTED_MODULE_0__.default.scale(.25)],
     'G': [_kaboom__WEBPACK_IMPORTED_MODULE_0__.default.sprite('ground', {
       frame: 5
     }), 'grasslands', _kaboom__WEBPACK_IMPORTED_MODULE_0__.default.scale(.25)],
+    'g': [_kaboom__WEBPACK_IMPORTED_MODULE_0__.default.sprite('ground', {
+      frame: 5
+    }), 'grasslands', 'border', _kaboom__WEBPACK_IMPORTED_MODULE_0__.default.scale(.25)],
     'H': [_kaboom__WEBPACK_IMPORTED_MODULE_0__.default.sprite('ground', {
       frame: 4
     }), 'hilltop', _kaboom__WEBPACK_IMPORTED_MODULE_0__.default.scale(.25)],
+    'h': [_kaboom__WEBPACK_IMPORTED_MODULE_0__.default.sprite('ground', {
+      frame: 4
+    }), 'hilltop', 'border', _kaboom__WEBPACK_IMPORTED_MODULE_0__.default.scale(.25)],
     'D': [_kaboom__WEBPACK_IMPORTED_MODULE_0__.default.sprite('ground', {
       frame: 3
     }), 'deadlands', _kaboom__WEBPACK_IMPORTED_MODULE_0__.default.scale(.25)],
     'O': [_kaboom__WEBPACK_IMPORTED_MODULE_0__.default.sprite('ground', {
       frame: 2
     }), // oasis
-    'oasis', _kaboom__WEBPACK_IMPORTED_MODULE_0__.default.scale(.25)]
+    'oasis', _kaboom__WEBPACK_IMPORTED_MODULE_0__.default.scale(.25)],
+    'o': [_kaboom__WEBPACK_IMPORTED_MODULE_0__.default.sprite('ground', {
+      frame: 2
+    }), // oasis
+    'oasis', 'border', _kaboom__WEBPACK_IMPORTED_MODULE_0__.default.scale(.25)]
   });
   var loc = _kaboom__WEBPACK_IMPORTED_MODULE_0__.default.add([_kaboom__WEBPACK_IMPORTED_MODULE_0__.default.pos(TILE_SIZE * TILE_COUNT / 2, TILE_SIZE * TILE_COUNT - TILE_SIZE / 2 + 1), _kaboom__WEBPACK_IMPORTED_MODULE_0__.default.origin('center'), _kaboom__WEBPACK_IMPORTED_MODULE_0__.default.rect(10, 10), _kaboom__WEBPACK_IMPORTED_MODULE_0__.default.color(1, 0, 0)]);
   _kaboom__WEBPACK_IMPORTED_MODULE_0__.default.add([_kaboom__WEBPACK_IMPORTED_MODULE_0__.default.pos(_kaboom__WEBPACK_IMPORTED_MODULE_0__.default.width() / 2, _kaboom__WEBPACK_IMPORTED_MODULE_0__.default.height() / 2), _kaboom__WEBPACK_IMPORTED_MODULE_0__.default.text("rpg playground", 32), _kaboom__WEBPACK_IMPORTED_MODULE_0__.default.origin('center')]);
@@ -110,24 +123,64 @@ function Main() {
       x: 0,
       y: -1 * SPEED
     });
+
+    if (loc.pos.y <= 0) {
+      loc.move({
+        x: 0,
+        y: SPEED
+      });
+      _kaboom__WEBPACK_IMPORTED_MODULE_0__.default.camShake(10);
+    }
+
+    ;
   });
   _kaboom__WEBPACK_IMPORTED_MODULE_0__.default.keyPress('s', function () {
     loc.move({
       x: 0,
       y: SPEED
     });
+
+    if (loc.pos.y >= TILE_SIZE * TILE_COUNT) {
+      loc.move({
+        x: 0,
+        y: -1 * SPEED
+      });
+      _kaboom__WEBPACK_IMPORTED_MODULE_0__.default.camShake(10);
+    }
+
+    ;
   });
   _kaboom__WEBPACK_IMPORTED_MODULE_0__.default.keyPress('w', function () {
     loc.move({
       y: 0,
       x: -1 * SPEED
     });
+
+    if (loc.pos.x < 0) {
+      loc.move({
+        y: 0,
+        x: SPEED
+      });
+      _kaboom__WEBPACK_IMPORTED_MODULE_0__.default.camShake(10);
+    }
+
+    ;
   });
   _kaboom__WEBPACK_IMPORTED_MODULE_0__.default.keyPress('e', function () {
     loc.move({
       y: 0,
       x: SPEED
     });
+
+    if (loc.pos.x >= TILE_SIZE * TILE_COUNT) {
+      loc.move({
+        y: 0,
+        x: -1 * SPEED
+      });
+      _kaboom__WEBPACK_IMPORTED_MODULE_0__.default.camShake(10);
+    }
+
+    ;
   });
   _kaboom__WEBPACK_IMPORTED_MODULE_0__.default.keyPress('space', function () {// open area map
   });

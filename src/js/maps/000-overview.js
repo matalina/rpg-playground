@@ -1,13 +1,13 @@
 export let overview = [
-    'BBMMMMMBB',
+    'BBmmmmmBB',
     'BMMMMMOOB',
-    'MMMMMDOOO',
-    'MMMMDDOOO',
-    'MMMDDDDOG',
-    'MGDDDGGGG',
-    'GGGGDGGGG',
+    'mMMMMDOOo',
+    'mMMMDDOOo',
+    'mMMDDDDOg',
+    'mGDDDGGGg',
+    'gGGGDGGGg',
     'BGGGHGGGB',
-    'BBGHHHGBB'
+    'BBGhhhGBB'
 ];
 
 export default overview;
