@@ -1,20 +1,6 @@
-import kaboom from "kaboom";
-import asepritePlugin from "kaboom/plugins/aseprite";
+import k from './kaboom';
+import Main from './scene/Main';
 
-const k = kaboom({
-    scale: 1,
-    plugins: [asepritePlugin],
-    clearColor: [0, 0, 0, 1],
-    fullscreen: true,
-});
-
-k.scene("main", () => {
-
-    k.add([
-        k.text("ohhimark", 32),
-        k.pos(100, 100),
-    ]);
-
-});
+k.scene("main", Main);
 
 k.start("main");
