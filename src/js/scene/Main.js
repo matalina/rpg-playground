@@ -1,13 +1,11 @@
 import k from '../kaboom';
 import overview from '../maps/000-overview';
+import { TILE_SIZE, TILE_COUNT } from '../constants';
 
 k.loadSprite('ground', "images/ground_tile.png", {
     sliceX: 4,
     sliceY: 3,
 });
-
-const TILE_SIZE = 50;
-const TILE_COUNT = 9;
 
 export default function Main() {
     k.addLevel(
@@ -96,7 +94,25 @@ export default function Main() {
         };
     })
 
+    k.keyPress('up', () => {
+        loc.move({ x: 0, y: -1 * SPEED });
+    
+        if (loc.pos.y <= 0) {
+            loc.move({ x: 0, y: SPEED });
+            k.camShake(10);
+        };
+    })
+
     k.keyPress('s', () => {
+        loc.move({ x: 0, y: SPEED });
+
+        if (loc.pos.y >= TILE_SIZE * TILE_COUNT) {
+            loc.move({ x: 0, y: -1 * SPEED });
+            k.camShake(10);
+        };
+    })
+
+    k.keyPress('down', () => {
         loc.move({ x: 0, y: SPEED });
 
         if (loc.pos.y >= TILE_SIZE * TILE_COUNT) {
@@ -116,6 +132,17 @@ export default function Main() {
         
     })
 
+    k.keyPress('left', () => {
+        loc.move({ y: 0, x: -1 * SPEED });
+
+        if (loc.pos.x < 0 ) {
+            loc.move({ y: 0, x: SPEED });
+            k.camShake(10);
+        };
+
+        
+    })
+
     k.keyPress('e', () => {
         loc.move({ y: 0, x: SPEED });
 
@@ -125,8 +152,21 @@ export default function Main() {
         };    
     })
 
+    k.keyPress('right', () => {
+        loc.move({ y: 0, x: SPEED });
+
+        if (loc.pos.x >= TILE_SIZE * TILE_COUNT) {
+            loc.move({ y: 0, x: -1 * SPEED });
+            k.camShake(10);
+        };    
+    })
+
     k.keyPress('space', () => {
-        // open area map
+        let level = {
+            x: Math.round(loc.pos.x / TILE_SIZE),
+            y: Math.round(loc.pos.y / TILE_SIZE),
+        }
+        k.go('next');
     });
 
 }
