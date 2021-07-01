@@ -1,8 +1,8 @@
-import k from './kaboom';
-import Main from './scene/Main';
-import NewBaseSence from './scene/NewBaseSence';
+import Vue from 'vue';
+import Map from './components/OverviewMap.vue';
 
-k.scene("main", Main);
-k.scene("next", NewBaseSence);
+Vue.use('map', Map);
 
-k.start("main");
+let app = new Vue({
+    el: '#app',
+});

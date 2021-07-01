@@ -1,13 +1,7 @@
-import k from '../kaboom';
 import overview from '../maps/000-overview';
 import { TILE_SIZE, TILE_COUNT } from '../constants';
 
-k.loadSprite('ground', "images/ground_tile.png", {
-    sliceX: 4,
-    sliceY: 3,
-});
-
-export default function Main() {
+export default function overviewMap() {
     k.addLevel(
         overview, {
             width: TILE_SIZE,
