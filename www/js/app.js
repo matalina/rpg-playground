@@ -14,6 +14,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var kaboom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! kaboom */ "./node_modules/kaboom/dist/kaboom.mjs");
 /* harmony import */ var _scene_overviewMap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../scene/overviewMap */ "./src/js/scene/overviewMap.js");
 /* harmony import */ var _scene_newBaseScene__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../scene/newBaseScene */ "./src/js/scene/newBaseScene.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../constants */ "./src/js/constants.js");
+//
+//
 //
 //
 //
@@ -21,18 +24,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var k = (0,kaboom__WEBPACK_IMPORTED_MODULE_0__.default)({
-  scale: 1,
-  clearColor: [0, 0, 0, 1],
-  width: 9 * 50 * 9 * 50,
-  height: 9 * 50 * 9 * 50,
-  root: document.getElementById("map")
-});
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: 'map',
+  name: 'overview-map',
   data: function data() {
     return {
-      kaboom: k
+      kaboom: null
     };
   },
   methods: {
@@ -40,13 +37,23 @@ var k = (0,kaboom__WEBPACK_IMPORTED_MODULE_0__.default)({
     newBaseScene: _scene_newBaseScene__WEBPACK_IMPORTED_MODULE_2__.default
   },
   mounted: function mounted() {
-    /*this.kaboom.loadSprite('ground', "images/ground_tile.png", {
-        sliceX: 4,
-        sliceY: 3,
+    var canvas = document.getElementById("map");
+    var root = document.getElementById("root");
+    this.kaboom = (0,kaboom__WEBPACK_IMPORTED_MODULE_0__.default)({
+      scale: 1,
+      clearColor: [0, 0, 0, 1],
+      width: _constants__WEBPACK_IMPORTED_MODULE_3__.TILE_SIZE * _constants__WEBPACK_IMPORTED_MODULE_3__.TILE_COUNT,
+      height: _constants__WEBPACK_IMPORTED_MODULE_3__.TILE_SIZE * _constants__WEBPACK_IMPORTED_MODULE_3__.TILE_COUNT,
+      canvas: canvas,
+      root: root
     });
-     this.kaboom.scene("main", this.overviewMap);
+    this.kaboom.loadSprite('ground', "images/ground_tile.png", {
+      sliceX: 4,
+      sliceY: 3
+    });
+    this.kaboom.scene("main", this.overviewMap);
     this.kaboom.scene("next", this.newBaseScene);
-    this.kaboom.start("main");*/
+    this.kaboom.start("main");
   }
 });
 
@@ -64,9 +71,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_OverviewMap_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/OverviewMap.vue */ "./src/js/components/OverviewMap.vue");
 
 
-vue__WEBPACK_IMPORTED_MODULE_1__.default.use('map', _components_OverviewMap_vue__WEBPACK_IMPORTED_MODULE_0__.default);
+vue__WEBPACK_IMPORTED_MODULE_1__.default.use('overview-map', _components_OverviewMap_vue__WEBPACK_IMPORTED_MODULE_0__.default);
 var app = new vue__WEBPACK_IMPORTED_MODULE_1__.default({
-  el: '#app'
+  el: '#app',
+  components: {
+    'overview-map': _components_OverviewMap_vue__WEBPACK_IMPORTED_MODULE_0__.default
+  }
 });
 
 /***/ }),
@@ -117,7 +127,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ newBaseSence)
 /* harmony export */ });
 function newBaseSence() {
-  k.add([k.pos(k.width() / 2, k.height() / 2), k.text("Next Scene", 32), k.origin('center')]);
+  this.kaboom.add([this.kaboom.pos(k.width() / 2, k.height() / 2), this.kaboom.text("Next Scene", 32), this.kaboom.origin('center')]);
 }
 
 /***/ }),
@@ -138,46 +148,48 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function overviewMap() {
-  k.addLevel(_maps_000_overview__WEBPACK_IMPORTED_MODULE_0__.default, {
+  var _this = this;
+
+  this.kaboom.addLevel(_maps_000_overview__WEBPACK_IMPORTED_MODULE_0__.default, {
     width: _constants__WEBPACK_IMPORTED_MODULE_1__.TILE_SIZE,
     height: _constants__WEBPACK_IMPORTED_MODULE_1__.TILE_SIZE,
-    'B': [k.sprite('ground', {
+    'B': [this.kaboom.sprite('ground', {
       frame: 0
-    }), 'bubble', k.scale(.25)],
-    'M': [k.sprite('ground', {
+    }), 'bubble', this.kaboom.scale(.25)],
+    'M': [this.kaboom.sprite('ground', {
       frame: 1
-    }), 'mountain', k.scale(.25)],
-    'm': [k.sprite('ground', {
+    }), 'mountain', this.kaboom.scale(.25)],
+    'm': [this.kaboom.sprite('ground', {
       frame: 1
-    }), 'mountain', 'border', k.scale(.25)],
-    'G': [k.sprite('ground', {
+    }), 'mountain', 'border', this.kaboom.scale(.25)],
+    'G': [this.kaboom.sprite('ground', {
       frame: 5
-    }), 'grasslands', k.scale(.25)],
-    'g': [k.sprite('ground', {
+    }), 'grasslands', this.kaboom.scale(.25)],
+    'g': [this.kaboom.sprite('ground', {
       frame: 5
-    }), 'grasslands', 'border', k.scale(.25)],
-    'H': [k.sprite('ground', {
+    }), 'grasslands', 'border', this.kaboom.scale(.25)],
+    'H': [this.kaboom.sprite('ground', {
       frame: 4
-    }), 'hilltop', k.scale(.25)],
-    'h': [k.sprite('ground', {
+    }), 'hilltop', this.kaboom.scale(.25)],
+    'h': [this.kaboom.sprite('ground', {
       frame: 4
-    }), 'hilltop', 'border', k.scale(.25)],
-    'D': [k.sprite('ground', {
+    }), 'hilltop', 'border', this.kaboom.scale(.25)],
+    'D': [this.kaboom.sprite('ground', {
       frame: 3
-    }), 'deadlands', k.scale(.25)],
-    'O': [k.sprite('ground', {
+    }), 'deadlands', this.kaboom.scale(.25)],
+    'O': [this.kaboom.sprite('ground', {
       frame: 2
     }), // oasis
-    'oasis', k.scale(.25)],
-    'o': [k.sprite('ground', {
+    'oasis', this.kaboom.scale(.25)],
+    'o': [this.kaboom.sprite('ground', {
       frame: 2
     }), // oasis
-    'oasis', 'border', k.scale(.25)]
+    'oasis', 'border', this.kaboom.scale(.25)]
   });
-  var loc = k.add([k.pos(_constants__WEBPACK_IMPORTED_MODULE_1__.TILE_SIZE * _constants__WEBPACK_IMPORTED_MODULE_1__.TILE_COUNT / 2, _constants__WEBPACK_IMPORTED_MODULE_1__.TILE_SIZE * _constants__WEBPACK_IMPORTED_MODULE_1__.TILE_COUNT - _constants__WEBPACK_IMPORTED_MODULE_1__.TILE_SIZE / 2 + 1), k.origin('center'), k.rect(10, 10), k.color(1, 0, 0)]);
-  k.add([k.pos(k.width() / 2, k.height() / 2), k.text("rpg playground", 32), k.origin('center')]);
+  var loc = this.kaboom.add([this.kaboom.pos(_constants__WEBPACK_IMPORTED_MODULE_1__.TILE_SIZE * _constants__WEBPACK_IMPORTED_MODULE_1__.TILE_COUNT / 2, _constants__WEBPACK_IMPORTED_MODULE_1__.TILE_SIZE * _constants__WEBPACK_IMPORTED_MODULE_1__.TILE_COUNT - _constants__WEBPACK_IMPORTED_MODULE_1__.TILE_SIZE / 2 + 1), this.kaboom.origin('center'), this.kaboom.rect(10, 10), this.kaboom.color(1, 0, 0)]);
+  this.kaboom.add([this.kaboom.pos(this.kaboom.width() / 2, this.kaboom.height() / 2), this.kaboom.text("rpg playground", 32), this.kaboom.origin('center')]);
   var SPEED = _constants__WEBPACK_IMPORTED_MODULE_1__.TILE_SIZE * _constants__WEBPACK_IMPORTED_MODULE_1__.TILE_SIZE + _constants__WEBPACK_IMPORTED_MODULE_1__.TILE_SIZE * 10;
-  k.keyPress('n', function () {
+  this.kaboom.keyPress('n', function () {
     loc.move({
       x: 0,
       y: -1 * SPEED
@@ -188,12 +200,13 @@ function overviewMap() {
         x: 0,
         y: SPEED
       });
-      k.camShake(10);
+
+      _this.kaboom.camShake(10);
     }
 
     ;
   });
-  k.keyPress('up', function () {
+  this.kaboom.keyPress('up', function () {
     loc.move({
       x: 0,
       y: -1 * SPEED
@@ -204,12 +217,13 @@ function overviewMap() {
         x: 0,
         y: SPEED
       });
-      k.camShake(10);
+
+      _this.kaboom.camShake(10);
     }
 
     ;
   });
-  k.keyPress('s', function () {
+  this.kaboom.keyPress('s', function () {
     loc.move({
       x: 0,
       y: SPEED
@@ -220,12 +234,13 @@ function overviewMap() {
         x: 0,
         y: -1 * SPEED
       });
-      k.camShake(10);
+
+      _this.kaboom.camShake(10);
     }
 
     ;
   });
-  k.keyPress('down', function () {
+  this.kaboom.keyPress('down', function () {
     loc.move({
       x: 0,
       y: SPEED
@@ -236,12 +251,13 @@ function overviewMap() {
         x: 0,
         y: -1 * SPEED
       });
-      k.camShake(10);
+
+      _this.kaboom.camShake(10);
     }
 
     ;
   });
-  k.keyPress('w', function () {
+  this.kaboom.keyPress('w', function () {
     loc.move({
       y: 0,
       x: -1 * SPEED
@@ -252,12 +268,13 @@ function overviewMap() {
         y: 0,
         x: SPEED
       });
-      k.camShake(10);
+
+      _this.kaboom.camShake(10);
     }
 
     ;
   });
-  k.keyPress('left', function () {
+  this.kaboom.keyPress('left', function () {
     loc.move({
       y: 0,
       x: -1 * SPEED
@@ -268,12 +285,13 @@ function overviewMap() {
         y: 0,
         x: SPEED
       });
-      k.camShake(10);
+
+      _this.kaboom.camShake(10);
     }
 
     ;
   });
-  k.keyPress('e', function () {
+  this.kaboom.keyPress('e', function () {
     loc.move({
       y: 0,
       x: SPEED
@@ -284,12 +302,13 @@ function overviewMap() {
         y: 0,
         x: -1 * SPEED
       });
-      k.camShake(10);
+
+      _this.kaboom.camShake(10);
     }
 
     ;
   });
-  k.keyPress('right', function () {
+  this.kaboom.keyPress('right', function () {
     loc.move({
       y: 0,
       x: SPEED
@@ -300,17 +319,19 @@ function overviewMap() {
         y: 0,
         x: -1 * SPEED
       });
-      k.camShake(10);
+
+      _this.kaboom.camShake(10);
     }
 
     ;
   });
-  k.keyPress('space', function () {
+  this.kaboom.keyPress('space', function () {
     var level = {
       x: Math.round(loc.pos.x / _constants__WEBPACK_IMPORTED_MODULE_1__.TILE_SIZE),
       y: Math.round(loc.pos.y / _constants__WEBPACK_IMPORTED_MODULE_1__.TILE_SIZE)
     };
-    k.go('next');
+
+    _this.kaboom.go('next');
   });
 }
 
@@ -417,9 +438,18 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { attrs: { id: "map" } })
+  return _vm._m(0)
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { attrs: { id: "root" } }, [
+      _c("canvas", { attrs: { id: "map" } })
+    ])
+  }
+]
 render._withStripped = true
 
 

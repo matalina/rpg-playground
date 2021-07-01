@@ -1,7 +1,7 @@
 export default function newBaseSence() {
-    k.add([
-        k.pos(k.width() / 2, k.height() /2),
-        k.text("Next Scene", 32),
-        k.origin('center'),
+    this.kaboom.add([
+        this.kaboom.pos(k.width() / 2, k.height() /2),
+        this.kaboom.text("Next Scene", 32),
+        this.kaboom.origin('center'),
     ]);
 }

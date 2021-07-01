@@ -2,165 +2,165 @@ import overview from '../maps/000-overview';
 import { TILE_SIZE, TILE_COUNT } from '../constants';
 
 export default function overviewMap() {
-    k.addLevel(
+    this.kaboom.addLevel(
         overview, {
             width: TILE_SIZE,
             height: TILE_SIZE,
             'B': [
-                k.sprite('ground', { frame: 0}),
+                this.kaboom.sprite('ground', { frame: 0}),
                 'bubble',
-                k.scale(.25)
+                this.kaboom.scale(.25)
             ],
             'M': [
-                k.sprite('ground', { frame: 1 }),
+                this.kaboom.sprite('ground', { frame: 1 }),
                 'mountain',
-                k.scale(.25)
+                this.kaboom.scale(.25)
             ],
             'm': [
-                k.sprite('ground', { frame: 1 }),
+                this.kaboom.sprite('ground', { frame: 1 }),
                 'mountain',
                 'border',
-                k.scale(.25)
+                this.kaboom.scale(.25)
             ],
             'G': [
-                k.sprite('ground', { frame: 5 }),
+                this.kaboom.sprite('ground', { frame: 5 }),
                 'grasslands',
-                k.scale(.25)
+                this.kaboom.scale(.25)
             ],
             'g': [
-                k.sprite('ground', { frame: 5 }),
+                this.kaboom.sprite('ground', { frame: 5 }),
                 'grasslands',
                 'border',
-                k.scale(.25)
+                this.kaboom.scale(.25)
             ],
             'H': [
-                k.sprite('ground', { frame: 4 }),
+                this.kaboom.sprite('ground', { frame: 4 }),
                 'hilltop',
-                k.scale(.25)
+                this.kaboom.scale(.25)
             ],
             'h': [
-                k.sprite('ground', { frame: 4 }),
+                this.kaboom.sprite('ground', { frame: 4 }),
                 'hilltop',
                 'border',
-                k.scale(.25)
+                this.kaboom.scale(.25)
             ],
             'D': [
-                k.sprite('ground', { frame: 3 }),
+                this.kaboom.sprite('ground', { frame: 3 }),
                 'deadlands',
-                k.scale(.25)
+                this.kaboom.scale(.25)
             ],
             'O': [
-                k.sprite('ground', { frame: 2 }), // oasis
+                this.kaboom.sprite('ground', { frame: 2 }), // oasis
                 'oasis',
-                k.scale(.25)
+                this.kaboom.scale(.25)
             ],
             'o': [
-                k.sprite('ground', { frame: 2 }), // oasis
+                this.kaboom.sprite('ground', { frame: 2 }), // oasis
                 'oasis',
                 'border',
-                k.scale(.25)
+                this.kaboom.scale(.25)
             ],
         
         }
     );
 
-    let loc = k.add([
-        k.pos(TILE_SIZE * TILE_COUNT / 2, (TILE_SIZE * TILE_COUNT) - (TILE_SIZE / 2) + 1),
-        k.origin('center'),
-        k.rect(10, 10),
-        k.color(1, 0, 0)
+    let loc = this.kaboom.add([
+        this.kaboom.pos(TILE_SIZE * TILE_COUNT / 2, (TILE_SIZE * TILE_COUNT) - (TILE_SIZE / 2) + 1),
+        this.kaboom.origin('center'),
+        this.kaboom.rect(10, 10),
+        this.kaboom.color(1, 0, 0)
     ]);
 
-    k.add([
-        k.pos(k.width() / 2, k.height() /2),
-        k.text("rpg playground", 32),
-        k.origin('center'),
+    this.kaboom.add([
+        this.kaboom.pos(this.kaboom.width() / 2, this.kaboom.height() /2),
+        this.kaboom.text("rpg playground", 32),
+        this.kaboom.origin('center'),
     ]);
 
     const SPEED = TILE_SIZE * TILE_SIZE + TILE_SIZE * 10;
 
-    k.keyPress('n', () => {
+    this.kaboom.keyPress('n', () => {
         loc.move({ x: 0, y: -1 * SPEED });
     
         if (loc.pos.y <= 0) {
             loc.move({ x: 0, y: SPEED });
-            k.camShake(10);
+            this.kaboom.camShake(10);
         };
     })
 
-    k.keyPress('up', () => {
+    this.kaboom.keyPress('up', () => {
         loc.move({ x: 0, y: -1 * SPEED });
     
         if (loc.pos.y <= 0) {
             loc.move({ x: 0, y: SPEED });
-            k.camShake(10);
+            this.kaboom.camShake(10);
         };
     })
 
-    k.keyPress('s', () => {
+    this.kaboom.keyPress('s', () => {
         loc.move({ x: 0, y: SPEED });
 
         if (loc.pos.y >= TILE_SIZE * TILE_COUNT) {
             loc.move({ x: 0, y: -1 * SPEED });
-            k.camShake(10);
+            this.kaboom.camShake(10);
         };
     })
 
-    k.keyPress('down', () => {
+    this.kaboom.keyPress('down', () => {
         loc.move({ x: 0, y: SPEED });
 
         if (loc.pos.y >= TILE_SIZE * TILE_COUNT) {
             loc.move({ x: 0, y: -1 * SPEED });
-            k.camShake(10);
+            this.kaboom.camShake(10);
         };
     })
 
-    k.keyPress('w', () => {
+    this.kaboom.keyPress('w', () => {
         loc.move({ y: 0, x: -1 * SPEED });
 
         if (loc.pos.x < 0 ) {
             loc.move({ y: 0, x: SPEED });
-            k.camShake(10);
+            this.kaboom.camShake(10);
         };
 
         
     })
 
-    k.keyPress('left', () => {
+    this.kaboom.keyPress('left', () => {
         loc.move({ y: 0, x: -1 * SPEED });
 
         if (loc.pos.x < 0 ) {
             loc.move({ y: 0, x: SPEED });
-            k.camShake(10);
+            this.kaboom.camShake(10);
         };
 
         
     })
 
-    k.keyPress('e', () => {
+    this.kaboom.keyPress('e', () => {
         loc.move({ y: 0, x: SPEED });
 
         if (loc.pos.x >= TILE_SIZE * TILE_COUNT) {
             loc.move({ y: 0, x: -1 * SPEED });
-            k.camShake(10);
+            this.kaboom.camShake(10);
         };    
     })
 
-    k.keyPress('right', () => {
+    this.kaboom.keyPress('right', () => {
         loc.move({ y: 0, x: SPEED });
 
         if (loc.pos.x >= TILE_SIZE * TILE_COUNT) {
             loc.move({ y: 0, x: -1 * SPEED });
-            k.camShake(10);
+            this.kaboom.camShake(10);
         };    
     })
 
-    k.keyPress('space', () => {
+    this.kaboom.keyPress('space', () => {
         let level = {
             x: Math.round(loc.pos.x / TILE_SIZE),
             y: Math.round(loc.pos.y / TILE_SIZE),
         }
-        k.go('next');
+        this.kaboom.go('next');
     });
 
 }
